@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@plugin "daisyui"{
+    themes: light --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "mytheme";
+   default: true;
+   prefersdark: false;
+   --color-primary: #9459ef;
+
+   @theme { --background-image-brand-gradient: linear-gradient( 90deg, #632EE3 0%, #9F62F2 100% ); }
+}

@@ -1,0 +1,20 @@
+import React from "react";
+import { Rings } from "react-loader-spinner";
+
+const LoadingSection = () => {
+  return (
+    <div className="h-full flex items-center justify-center">
+      <Rings
+        visible={true}
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="rings-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
+  );
+};
+
+export default LoadingSection;
