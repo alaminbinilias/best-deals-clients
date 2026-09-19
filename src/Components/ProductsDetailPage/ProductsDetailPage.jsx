@@ -65,7 +65,11 @@ const ProductsDetailPage = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/products/bids/${product._id}`)
+    fetch(`http://localhost:4000/products/bids/${product._id}`,{
+      headers:{
+        authorization:`Bearer ${user.accessToken}`
+      }
+    })
       .then((res) => res.json())
       .then((result) => setMakeBids(result));
   }, [product._id]);

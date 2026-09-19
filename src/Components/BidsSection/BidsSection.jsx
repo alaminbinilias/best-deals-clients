@@ -5,22 +5,18 @@ import Swal from "sweetalert2";
 const BidsSection = () => {
   const { user } = use(AuthContext);
   //console.log(user.accessToken);
+  console.log(user);
   const [myBids, setMybids] = useState([]);
-
-  useEffect(() => {
-    if (user?.email) {
-      fetch(`http://localhost:4000/bids/mybids?email=${user.email}`, {
-        headers: {
-          "Authorization": `Bearer ${user.accessToken}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          setMybids(result);
-        });
+  ///get bids for specific email
+  useEffect(()=>{
+    if(user.providerData[0].email){
+   fetch(`http://localhost:4000/bids/mybids?email=${user.providerData[0].email}`,{
+    headers:{
+      authorization:`Bearer ${user.accessToken}`
     }
-  }, [user?.email]);
+   }).then(res=>res.json()).then(result=>setMybids(result));
+    }
+  },[user.providerData[0].email]);
 
   const HadleDelete = (id) => {
     console.log("clicked");
