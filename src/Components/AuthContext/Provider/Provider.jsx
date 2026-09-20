@@ -19,6 +19,24 @@ const Provider = ({ children }) => {
   useEffect(() => {
     const unmount = onAuthStateChanged(auth, (user) => {
       //console.log(user);
+      if(user){
+        //console.log("Success");
+        const loggedUserInfo={email:user.providerData[0].email,
+          Name:user.displayName,
+          VerifiedEmail:user.emailVerified,
+          photo: user.photoURL
+        };
+        fetch("http://localhost:4000/gettokens",{
+          method:"POST",
+          headers:{
+            'content-type':"application/json"
+          },
+          body:JSON.stringify(loggedUserInfo),
+        }).then(res=>res.json()).then(result=>{
+          console.log("After own token create",result);
+          localStorage.setItem("Token", result.Token); 
+        })
+      }
       setUser(user);
       setLoading(false);
     });

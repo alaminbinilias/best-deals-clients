@@ -67,7 +67,7 @@ const ProductsDetailPage = () => {
   useEffect(() => {
     fetch(`http://localhost:4000/products/bids/${product._id}`,{
       headers:{
-        authorization:`Bearer ${user.accessToken}`
+        authorization:`Bearer ${localStorage.getItem('Token')}`
       }
     })
       .then((res) => res.json())
